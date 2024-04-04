@@ -15,6 +15,17 @@ public class Cafe extends Building {
     }
 
     /**
+     * An overloaded version of the Cafe constructor with no information.
+     */
+    public Cafe(){
+        this("<Name Unknown>", "<Address Unknown>", 1);
+        this.nCoffeeOunces = 100;
+        this.nSugarPackets = 100;
+        this.nCreams = 100;
+        this.nCups = 100;
+    }
+
+    /**
      * decreases the remaining inventory of the Cafe my the amount ordered (and decreases the number of cups by one).
      * If there is not enough inventory to fufill an order, the stock is refilled to it's max capacity. 
      * @param size an int indicating the size of the dirnk in ounces.
@@ -61,6 +72,15 @@ public class Cafe extends Building {
         return this.nCoffeeOunces + " Ounces coffee, " + this.nSugarPackets + " Sugar packets, " + this.nCreams + " Creams, " + this.nCups + " Cups.";
     }
 
+    public void goToFloor(int newFloor){
+        if(nFloors > 1){
+            throw new RuntimeException("As a non-employee, you may not leave the 1st floor");
+        }
+        else{
+            throw new RuntimeException("There is no elevator in this cafe.");
+        } 
+      }
+
     /**
      * Override of showOptions from the Building class, supering in the original print statement and adding the other methods available to the user.
      * Question: do I really want to show restock() as an option if it's private? 
@@ -74,13 +94,18 @@ public class Cafe extends Building {
     public static void main(String[] args) {
         Cafe myCafe = new Cafe("Compass", "123 Campus Center", 1);
         System.out.println(myCafe.showStock());
-        myCafe.sellCoffee(16, 3, 8);
-        System.out.println(myCafe.showStock());
-        myCafe.sellCoffee(75, 80, 30);
-        System.out.println(myCafe.showStock());
-        myCafe.sellCoffee(30, 23, 4);
-        System.out.println(myCafe.showStock());
-        myCafe.showOptions();
+        //myCafe.sellCoffee(16, 3, 8);
+        //System.out.println(myCafe.showStock());
+        //myCafe.sellCoffee(75, 80, 30);
+        //System.out.println(myCafe.showStock());
+        //myCafe.sellCoffee(30, 23, 4);
+        //System.out.println(myCafe.showStock());
+       // myCafe.showOptions();
+        //myCafe.enter();
+        //myCafe.goToFloor(1);
+        Cafe newCafe = new Cafe();
+        newCafe.enter();
+        newCafe.sellCoffee();
 
 
     }

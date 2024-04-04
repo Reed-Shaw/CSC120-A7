@@ -4,6 +4,7 @@ import java.util.Hashtable;
 public class Library extends Building {
 
   private Hashtable<String, Boolean> collection;
+  
 
   public Library(String name, String address, int nFloors) {
     super(name, address, nFloors);
@@ -45,12 +46,32 @@ public class Library extends Building {
   }
 
   /**
+   * Overloaded checkOut constructor that allows someone to check out two books at once.
+   * @param title1 a String containing the title of the first book and it's author
+   * @param title2 a String containing the title of the second book and it's author.
+   */
+  public void checkOut(String title1, String title2){
+    this.collection.replace(title1, true, false);
+    this.collection.replace(title2, true, false);
+  }
+
+  /**
    * Allows the user to return a book
    * @param title a String containing the title of the book and it's author. 
    */
   public void returnBook(String title){
     this.collection.replace(title, false, true);
   }  
+
+  /**
+   * Allows the user to return two books instead of just one.
+   * @param title1 a String containing the title of the first book and it's author
+   * @param title2 a String containing the title of the second book and it's author
+   */
+  public void returnBook(String title1, String title2){
+    this.collection.replace(title1, false, true);
+    this.collection.replace(title2, false, true);
+  }
 
   /**
    * Allows the user to see if a certain book is in the collection.
@@ -106,17 +127,22 @@ public class Library extends Building {
     System.out.println(myLibrary.removeTitle("Girlbossing by Anatha Jones"));
     myLibrary.addTitle("Grace by Ana");
     myLibrary.addTitle("Interest by Ahmed Rogers");
-    System.out.println(myLibrary.collection.toString());
-    myLibrary.checkOut("Interest by Ahmed Rogers");
-    System.out.println(myLibrary.collection.toString());
-    myLibrary.returnBook("Interest by Ahmed Rogers");
-    System.out.println(myLibrary.collection.toString());
-    System.out.println("Test for containsTitle");
-    System.out.println(myLibrary.containsTitle("Interest by Ahmed Rogers"));
-    System.out.println("Test for isAvailable");
-    System.out.println(myLibrary.isAvailable("Grace by Ana"));
-    myLibrary.printCollection();
+    //System.out.println(myLibrary.collection.toString());
+    //myLibrary.checkOut("Interest by Ahmed Rogers");
+    //System.out.println(myLibrary.collection.toString());
+    //myLibrary.returnBook("Interest by Ahmed Rogers");
+    //System.out.println(myLibrary.collection.toString());
+    //System.out.println("Test for containsTitle");
+    //System.out.println(myLibrary.containsTitle("Interest by Ahmed Rogers"));
+    //System.out.println("Test for isAvailable");
+    //System.out.println(myLibrary.isAvailable("Grace by Ana"));
+    //myLibrary.printCollection();
     myLibrary.showOptions();
+    myLibrary.enter();
+    myLibrary.goToFloor(3);
+    
+
+
 
 
   }

@@ -15,6 +15,18 @@ public class House extends Building {
   }
 
   /**
+   * Overloaded method that allows the user to just input the name of the house. The address is set to unknown, the # of floors 
+   * is assumed to be 1, and hasElevator and hasDiningRoom are assumed to be false. 
+   * @param name a String contianing the name of the building. 
+   */
+  public House(String name){
+    super(name, "<unknown", 1);
+    this.hasElevator = false;
+    this.hasDiningRoom = false;
+    this.residents = new ArrayList<String>();
+  }
+
+  /**
    * method describing if the house has a dining room. 
    * @return a boolean true or false depending on if the house has a dining room (true) or not (false).
    */
@@ -44,6 +56,17 @@ public class House extends Building {
       //If the person's name is already on the list of residents, print an "error" and say that the name already lives in the house.
       System.out.println("Error: " + name + " already lives in " + this.name);
     }
+  }
+
+  /**
+   * Overloaded version of the moveIn method. Allows a list of residents to be added at a time. 
+   * @param names an ArrayList<String> of resident names that will be added to the list of residents.
+   */
+  public void moveIn(ArrayList<String> names){
+    for(int i = 0; i < names.size();i++ ){
+      this.residents.add(names.get(i));
+    }
+    
   }
 
   /**
@@ -110,7 +133,7 @@ public class House extends Building {
   }
 
   public static void main(String[] args) {
-    House myHouse = new House("Gillett House", "47 Elm Street", 5, false, true);
+    House myHouse = new House("Gillett House", "47 Elm Street", 5, true, true);
     System.out.println(myHouse.toString());
     myHouse.residents.add("Jordan");
     myHouse.residents.add("Samantha Grace");
@@ -126,6 +149,13 @@ public class House extends Building {
     //myHouse.showOptions();
     myHouse.enter();
     myHouse.goToFloor(3);
+    ArrayList<String> newResidents = new ArrayList<String>();
+    newResidents.add("Julia");
+    newResidents.add("Olivia");
+    newResidents.add("Lucas");
+    newResidents.add("Sruti");
+    myHouse.moveIn(newResidents);
+    System.out.println(myHouse.residents);
 
   }
 
